@@ -15,8 +15,8 @@
 # in the templates via {{ site.myvariable }}.
 title: ClusterFuzz
 description: Documentation for ClusterFuzz
-baseurl: "/clusterfuzz" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/clusterfuzz-document-cn" # the subpath of your site, e.g. /blog
+url: "vancir.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 markdown: kramdown
