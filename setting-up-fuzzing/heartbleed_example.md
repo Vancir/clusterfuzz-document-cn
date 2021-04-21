@@ -11,6 +11,8 @@ permalink: /setting-up-fuzzing/heartbleed-example/
 This tutorial will show you how to find [Heartbleed] using libFuzzer and
 ClusterFuzz.
 
+本教程将会向您展示如何使用libFuzzer和Clusterfuzz挖掘[Heartbleed]漏洞.
+
 - TOC
 {:toc}
 ---

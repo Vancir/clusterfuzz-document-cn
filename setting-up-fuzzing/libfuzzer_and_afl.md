@@ -11,6 +11,9 @@ This page walks you through setting up [coverage guided fuzzing] using
 [libFuzzer] or [AFL]. It also serves as a reference for using more advanced
 features such as dictionaries and seed corpus.
 
+本页面将引导您设置好覆盖率导向模糊测试环境(使用[libFuzzer]or[AFL]). 
+
+
 - TOC
 {:toc}
 
@@ -45,6 +48,8 @@ greater which you can download from the [LLVM Snapshot Builds page].
 
 AFL is only supported on Linux.
 
+AFL仅支持在Linux平台上运行.
+
 [LLVM Snapshot Builds page]: https://llvm.org/builds/
 
 ## Builds
@@ -53,6 +58,8 @@ AFL is only supported on Linux.
 LibFuzzer targets are easy to build. Just compile and link a [fuzz target] with
 `-fsanitize=fuzzer` and a [sanitizer] such as [AddressSanitizer]
 (`-fsanitize=address`).
+
+LibFuzzer的构建过程十分简单. 只需进行编译并跟两个目标链接即可. 一个是使用选项`-fsanitize=fuzzer`链接一个[fuzz target], 另一个是使用选项`-fsanitize=address`链接一个[sanitizer], 比如[AddressSanitizer]. 
 
 ```bash
 $CXX -fsanitize=address,fuzzer fuzzer.cc -o fuzzer
