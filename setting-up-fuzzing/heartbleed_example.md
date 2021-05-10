@@ -71,19 +71,12 @@ zip openssl-fuzzer-build.zip handshake-fuzzer server.key server.pem
 * 使用"ADD"按钮将该Job添加至ClusterFuzz.
 
 ## Fuzzing and seeing results
-If you follow this tutorial using [local ClusterFuzz] server and bot instances,
-and you do not have any other fuzzing tasks running, you should see the string:
-`fuzz libFuzzer libfuzzer_asan_linux_openssl` show up in the [bot logs]. This
-means that ClusterFuzz is fuzzing your build. Soon after that you should see a
-stack trace and the string: `AddressSanitizer: heap-buffer-overflow` in the log.
 
-If you follow this tutorial using a [production instance of ClusterFuzz], you
-should be able to see the string `fuzz libFuzzer libfuzzer_asan_linux_openssl`
-on the *Bots* page. The timing also depends on the other workload you may have.
+如果您遵照[local ClusterFuzz]教程配置好了本地的server和bot实例, 并且同时也没有其他任何fuzzing任务正在运行, 那么您接下来应该就能在[bot logs]处看到`fuzz libFuzzer libfuzzer_asan_linux_openssl`的字样. 这代表着ClusterFuzz正在对您构建的代码进行模糊测试. 不久后您就能在日志里看到崩溃栈信息以及字符串`AddressSanitizer: heap-buffer-overflow`. 
 
-Some time later, you can go to the ClusterFuzz homepage (ie: the *Testcases*
-page) and you will see a testcase titled **"Heap-buffer-overflow READ{\*}"**.
-This is the Heartbleed vulnerability found by ClusterFuzz.
+如果您遵照的是教程[production instance of ClusterFuzz], 那么您可以在*Bots*页面看到`fuzz libFuzzer libfuzzer_asan_linux_openssl`字样. 具体花费的时间取决于您可能承担的其他工作负荷. 
+
+随后, 您可以转到ClusterFuzz首页(或者*Testcases*页面), 您将会看到一个标题名为**"Heap-buffer-overflow READ{\*}"**的测试用例. 这就是由ClusterFuzz发现的心脏滴血漏洞. 
 
 [bot logs]: {{ site.baseurl }}/getting-started/local-instance/#viewing-logs
 [local ClusterFuzz]: {{ site.baseurl }}/getting-started/local-instance/
