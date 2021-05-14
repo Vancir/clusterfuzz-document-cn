@@ -8,9 +8,8 @@ permalink: /contributing-code/staging-changes/
 
 # Staging changes
 
-It is recommended to stage your code changes for either App Engine or the bot, before deploying
-them in production. This help to access the impact of those changes, before they are deployed at
-scale.
+
+建议先暂存(stage)在App Engine或Bot上进行的代码改动, 然后再将其部署到生产环境中. 这样有助于在大规模部署这些改动之前, 获得这些改动的造成的影响. 
 
 - TOC
 {:toc}
@@ -19,24 +18,24 @@ scale.
 
 ## Prerequisites
 
-* You need to have a [production setup] deployed.
+* 您首先需要参照[生产设置]篇章部署好一个环境. 
 
 ## App Engine changes
 
-You can test your UI or cron changes on a staging server instance using:
+您可以使用以下命令在暂存服务器实例上测试UI或Cron的改动:
 
 ```bash
 python butler.py deploy --staging --config-dir=$CONFIG_DIR
 ```
 
-Once deployed, the changes will be visible on `https://staging-dot-<your project id>.appspot.com`.
+部署后, 可以前往`https://staging-dot-<your project id>.appspot.com`查看您的改动.
 
-**Note**: The staging server uses the same database as the production server. So, be careful of any
-changes that may impact the data in the production database.
+**注意**: 暂存服务器使用与生产服务器相同的数据库. 因此，请注意任何可能影响生产数据库内数据的改动. 
+
 
 ## Bot changes
 
-You can test code changes on a particular compute engine bot using:
+您可以使用以下方法在特定的Compute Engine Bot上测试代码改动: 
 
 ```bash
 python butler.py remote \
@@ -46,10 +45,8 @@ python butler.py remote \
   stage --config-dir=$CONFIG_DIR
 ```
 
-**Note**:
-* These changes will not be overwritten by any production deployments for 2 days to allow
-adequate time for your changes to be tested. To discard those changes, just reboot the bot.
-* This functionality is currently only supported on a Google Compute Engine bot running
-one of the docker images provided in the *docker* directory.
+**注意**:
+* 这些更改在2天之内都不会被任何生产部署所覆盖, 以便您有足够的时间来测试您的更改. 如果要放弃这些更改, 只需重新启动Bot即可. 
+* 目前只有通过*docker*目录所提供的docker映像运行起来的Google Compute Engine Bot才支持此功能. 
 
-[production setup]: {{ site.baseurl }}/production-setup/
+[生产设置]: {{ site.baseurl }}/production-setup/
