@@ -7,4 +7,5 @@ permalink: /contributing-code/
 ---
 
 # Contributing code
-These pages walks you through the process of contributing new code changes to ClusterFuzz.
+
+这些页面将引导您如何完成向ClusterFuzz贡献代码. 

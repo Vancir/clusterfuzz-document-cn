@@ -7,6 +7,5 @@ permalink: /production-setup/
 ---
 
 # Production setup
-These pages walk you through the process of setting up ClusterFuzz for production
-use with all its features enabled.
 
+这些页面将引导您搭建用于生产的ClusterFuzz, 并启用所有的功能. 

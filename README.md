@@ -27,12 +27,12 @@ bundle exec jekyll serve
 | ⏸️    | Setting up fuzzing - libFuzzer and AFL                       | 正在进行 |
 |      | Setting up fuzzing - Blackbox fuzzing                        | 未开始   |
 | ✅    | Setting up fuzzing - Heartbleed example                      | 已完成   |
-|      | Production setup                                             | 未开始   |
+| ✅    | Production setup                                             | 已完成   |
 |      | Production setup - ClusterFuzz                               | 未开始   |
 |      | Production setup - Build pipeline                            | 未开始   |
 |      | Production setup - Setting up a fuzzing job                  | 未开始   |
 |      | Production setup - Setting up bots                           | 未开始   |
-|      | Using ClusterFuzz                                            | 未开始   |
+| ✅    | Using ClusterFuzz                                            | 未开始   |
 |      | Using ClusterFuzz - UI overview                              | 未开始   |
 |      | Using ClusterFuzz - Workflows                                | 未开始   |
 |      | Using ClusterFuzz - Workflows - Triaging new crashes         | 未开始   |
@@ -42,11 +42,11 @@ bundle exec jekyll serve
 |      | Using ClusterFuzz -  Advanced features                       | 未开始   |
 |      | Using ClusterFuzz -  Advanced features - Access control      | 未开始   |
 |      | Using ClusterFuzz -  Advanced features - Code coverage       | 未开始   |
-|      | Contributing code                                            | 未开始   |
-|      | Contributing code - Source code                              | 未开始   |
-|      | Contributing code - Running unit tests                       | 未开始   |
-|      | Contributing code - Staging changes                          | 未开始   |
-|      | Reference                                                    | 未开始   |
+| ✅    | Contributing code                                            | 已完成   |
+| ⏸️    | Contributing code - Source code                              | 正在进行 |
+| ⏸️    | Contributing code - Running unit tests                       | 正在进行 |
+| ⏸️    | Contributing code - Staging changes                          | 正在进行 |
+| ✅    | Reference                                                    | 已完成   |
 | ✅    | Reference - Glossary                                         | 已完成   |
 |      | Reference - Coverage guided vs blackbox fuzzing              | 未开始   |
 |      | Reference - Job definition                                   | 未开始   |

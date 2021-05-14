@@ -6,5 +6,4 @@ nav_order: 5
 permalink: /using-clusterfuzz/
 ---
 
-These documents walk you through some key features of ClusterFuzz and common
-workflows.
+这些文档将引导您逐步了解ClusterFuzz的一些关键功能以及常见的工作流程. 
