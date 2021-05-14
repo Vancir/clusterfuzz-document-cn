@@ -14,7 +14,7 @@ permalink: /contributing-code/running-unit-tests/
 
 ## Test core changes
 
-You can run unit tests for the core functionality using:
+您可以使用以下命令运行针对核心功能的单元测试: 
 
 ### Python code
 
@@ -22,20 +22,20 @@ You can run unit tests for the core functionality using:
 python butler.py py_unittest -t core
 ```
 
-Optional switches you can use:
-* `-m`: Execute tests in-parallel (recommended).
-* `-v`: Run tests in verbose mode (with INFO log level).
-* `-u`: Show output from `print` (useful for debugging).
-* `-p <test_name/test_prefix_with_wildcards>`: Execute a particular test or set of tests matching
-a particular prefix. E.g. `-p libfuzzer_*` will execute all libFuzzer tests.
+可以使用的可选开关: 
+* `-m`: 并行地执行测试(推荐). 
+* `-v`: 以详细模式(INFO日志级别)运行测试.
+* `-u`: 显示`print`的输出(利于调试). 
+* `-p <test_name/test_prefix_with_wildcards>`: 执行一个特定的测试或一组与特定前缀匹配的测试. 例如:`-p libfuzzer_ *`将执行所有以libFuzzer为前缀命名的单元测试. 
 
 ## Test App Engine changes
 
-Most of the App Engine code is written in Python. You can run unit tests for the App Engine
-changes (e.g. UI, cron) using:
+大多数App Engine代码都是用Python编写的. 您可以使用以下命令对App Engine的改动(例如UI,cron)运行单元测试. 
 
 ```bash
 python butler.py py_unittest -t appengine
 ```
 
-You can use any switch as defined above in the python core changes section.
+您同样可以使用上述在[Python code]段中定义的任何开关. 
+
+[Python code]:  {{ site.baseurl }}/contributing-code/running-unit-tests/#python-code

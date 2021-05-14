@@ -44,7 +44,7 @@ bundle exec jekyll serve
 |      | Using ClusterFuzz -  Advanced features - Code coverage       | 未开始   |
 | ✅    | Contributing code                                            | 已完成   |
 | ⏸️    | Contributing code - Source code                              | 正在进行 |
-| ⏸️    | Contributing code - Running unit tests                       | 正在进行 |
+| ✅    | Contributing code - Running unit tests                       | 已完成   |
 | ⏸️    | Contributing code - Staging changes                          | 正在进行 |
 | ✅    | Reference                                                    | 已完成   |
 | ✅    | Reference - Glossary                                         | 已完成   |
