@@ -8,5 +8,5 @@ permalink: /using-clusterfuzz/advanced/
 ---
 
 # Advanced features
-These set of documents provide detail on some more advanced features of
-ClusterFuzz.
+
+这些文档详细介绍了ClusterFuzz的一些高阶功能.

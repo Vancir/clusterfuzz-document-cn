@@ -34,12 +34,12 @@ bundle exec jekyll serve
 |      | Production setup - Setting up bots                           | 未开始   |
 | ✅    | Using ClusterFuzz                                            | 未开始   |
 |      | Using ClusterFuzz - UI overview                              | 未开始   |
-|      | Using ClusterFuzz - Workflows                                | 未开始   |
+| ✅    | Using ClusterFuzz - Workflows                                | 已完成   |
 |      | Using ClusterFuzz - Workflows - Triaging new crashes         | 未开始   |
 |      | Using ClusterFuzz - Workflows - Fixing a bug                 | 未开始   |
 |      | Using ClusterFuzz - Workflows - Analyzing fuzzer performance | 未开始   |
 |      | Using ClusterFuzz - Workflows - Uploading a testcase         | 未开始   |
-|      | Using ClusterFuzz -  Advanced features                       | 未开始   |
+| ✅    | Using ClusterFuzz -  Advanced features                       | 已完成   |
 |      | Using ClusterFuzz -  Advanced features - Access control      | 未开始   |
 |      | Using ClusterFuzz -  Advanced features - Code coverage       | 未开始   |
 | ✅    | Contributing code                                            | 已完成   |
