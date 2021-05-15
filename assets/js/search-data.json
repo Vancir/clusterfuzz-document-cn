@@ -55,7 +55,7 @@
   },"9": {
     "doc": "Advanced features",
     "title": "Advanced features",
-    "content": "These set of documents provide detail on some more advanced features of ClusterFuzz. ",
+    "content": "这些文档详细介绍了ClusterFuzz的一些高阶功能. ",
     "url": "/clusterfuzz-document-cn/using-clusterfuzz/advanced/",
     "relUrl": "/using-clusterfuzz/advanced/"
   },"10": {
@@ -295,7 +295,7 @@
   },"49": {
     "doc": "Contributing code",
     "title": "Contributing code",
-    "content": "These pages walks you through the process of contributing new code changes to ClusterFuzz. ",
+    "content": "这些页面将引导您如何完成向ClusterFuzz贡献代码. ",
     "url": "/clusterfuzz-document-cn/contributing-code/",
     "relUrl": "/contributing-code/"
   },"50": {
@@ -631,7 +631,7 @@
   },"105": {
     "doc": "Production setup",
     "title": "Production setup",
-    "content": "These pages walk you through the process of setting up ClusterFuzz for production use with all its features enabled. ",
+    "content": "这些页面将引导您搭建用于生产的ClusterFuzz, 并启用所有的功能. ",
     "url": "/clusterfuzz-document-cn/production-setup/",
     "relUrl": "/production-setup/"
   },"106": {
@@ -649,13 +649,13 @@
   },"108": {
     "doc": "Running unit tests",
     "title": "Test core changes",
-    "content": "You can run unit tests for the core functionality using: . Python code . python butler.py py_unittest -t core . Optional switches you can use: . | -m: Execute tests in-parallel (recommended). | -v: Run tests in verbose mode (with INFO log level). | -u: Show output from print (useful for debugging). | -p &lt;test_name/test_prefix_with_wildcards&gt;: Execute a particular test or set of tests matching a particular prefix. E.g. -p libfuzzer_* will execute all libFuzzer tests. | . ",
+    "content": "您可以使用以下命令运行针对核心功能的单元测试: . Python code . python butler.py py_unittest -t core . 可以使用的可选开关: . | -m: 并行地执行测试(推荐). | -v: 以详细模式(INFO日志级别)运行测试. | -u: 显示print的输出(利于调试). | -p &lt;test_name/test_prefix_with_wildcards&gt;: 执行一个特定的测试或一组与特定前缀匹配的测试. 例如:-p libfuzzer_ *将执行所有以libFuzzer为前缀命名的单元测试. | . ",
     "url": "/clusterfuzz-document-cn/contributing-code/running-unit-tests/#test-core-changes",
     "relUrl": "/contributing-code/running-unit-tests/#test-core-changes"
   },"109": {
     "doc": "Running unit tests",
     "title": "Test App Engine changes",
-    "content": "Most of the App Engine code is written in Python. You can run unit tests for the App Engine changes (e.g. UI, cron) using: . python butler.py py_unittest -t appengine . You can use any switch as defined above in the python core changes section. ",
+    "content": "大多数App Engine代码都是用Python编写的. 您可以使用以下命令对App Engine的改动(例如UI,cron)运行单元测试. python butler.py py_unittest -t appengine . 您同样可以使用上述在Python code段中定义的任何开关. ",
     "url": "/clusterfuzz-document-cn/contributing-code/running-unit-tests/#test-app-engine-changes",
     "relUrl": "/contributing-code/running-unit-tests/#test-app-engine-changes"
   },"110": {
@@ -715,7 +715,7 @@
   },"119": {
     "doc": "Setting up fuzzing",
     "title": "Setting up fuzzing",
-    "content": "These pages walk you through setting up fuzzing jobs. 以下页面将引导您设置模糊测试任务. The two types of fuzzing supported on ClusterFuzz are coverage guided fuzzing (using libFuzzer and AFL) and blackbox fuzzing. See this page for a comparison. ClusterFuzz支持两种类型的模糊测试: 覆盖率导向模糊测试(使用libFuzzer以及AFL)以及黑盒模糊测试. 查看[这个页面]以获悉这两种类型的比较. ",
+    "content": "以下页面将引导您设置模糊测试任务. ClusterFuzz支持这两种类型的模糊测试: 覆盖率导向的模糊测试(使用libFuzzer以及AFL)以及黑盒模糊测试. 查看这个页面以获悉这两种类型的比较. ",
     "url": "/clusterfuzz-document-cn/setting-up-fuzzing/",
     "relUrl": "/setting-up-fuzzing/"
   },"120": {
@@ -727,31 +727,31 @@
   },"121": {
     "doc": "Source code",
     "title": "Directory structure",
-    "content": ". | bot - placeholder for bot specific artifacts (e.g. fuzzers, corpora). | configs - sample project config, also used for tests. | coverage - stores coverage data for tests. | deployment - stores deployment artifacts such as source code archives. | docker - sample docker images, tested on Google Cloud VMs. | docs - this documentation. | local - artifacts for local testing (e.g. install_deps.bash for ClusterFuzz deps). | resources - helper binaries needed by bots (e.g. llvm-symbolizer). | src - source code root. | appengine - App Engine specific files (Python 2). | handlers - backend code for various web pages. | libs - general helper libraries (e.g. access control). | private - original template code for various web pages (Polymer 2). | templates - auto-generated minimized template code for various web pages (Polymer 2). | . | go - go code. | python - python 2 code. | bot - bot specific code. | tests - tests for core and App Engine code. | rest are package level directories. | . | third_party - third-party package dependencies. | requirements.txt - platform agnostic package list (Python 2). | platform_requirements.txt - platform dependent package list (Python 2). | . | bower.json - component dependencies for Polymer 2. | butler.py - helper script for various command line tasks (e.g. testing, deployment). | . ",
+    "content": ". | bot - 放置bot特定文件(例如fuzzers, corpora)的目录. | configs -示例项目配置, 也用于测试. | coverage - 用于存储测试的覆盖率数据的目录. | deployment - 存储部署相关的文件, 例如源代码归档. | docker - 示例Docker映像示例, 测试于Google Cloud VMs. | docs - 本文档. | local - 用于本地测试的文件(例如, 用于安装ClusterFuzz依赖项的install_deps.bash). | resources - Bots所需的辅助用二进制文件(例如llvm-symbolizer). | src - 源代码根目录. | appengine - App Engine相关代码/文件(Python 2) . | handlers - 各种网页的后端代码. | libs - 通用的辅助用代码库(例如访问控制). | private - 各种网页的原始模板代码(Polymer 2) | templates - 用于自动生成各种网页的最小模板代码(Polymer 2). | . | go - Go语言代码. | python - Python 2代码. | bot - Bot相关代码. | tests - 核心代码和App Engine代码的单元测试集. | 其余的是代码包package级别的目录. | . | third_party - 依赖的第三方软件包. | requirements.txt - 平台无关的依赖包清单(Python 2). | platform_requirements.txt - (Python 2). 平台相关的依赖包清单(Python 2). | . | bower.json - 用于Polymer 2的组件依赖. | butler.py - 用于各种命令行任务(例如测试, 部署)的帮助程序脚本. | . ",
     "url": "/clusterfuzz-document-cn/contributing-code/source-code/#directory-structure",
     "relUrl": "/contributing-code/source-code/#directory-structure"
   },"122": {
     "doc": "Staging changes",
     "title": "Staging changes",
-    "content": "It is recommended to stage your code changes for either App Engine or the bot, before deploying them in production. This help to access the impact of those changes, before they are deployed at scale. | Staging changes . | Prerequisites | App Engine changes | Bot changes | . | . ",
+    "content": "建议先暂存(stage)在App Engine或Bot上进行的代码改动, 然后再将其部署到生产环境中. 这样有助于在大规模部署这些改动之前, 获得这些改动的造成的影响. | Staging changes . | Prerequisites | App Engine changes | Bot changes | . | . ",
     "url": "/clusterfuzz-document-cn/contributing-code/staging-changes/",
     "relUrl": "/contributing-code/staging-changes/"
   },"123": {
     "doc": "Staging changes",
     "title": "Prerequisites",
-    "content": ". | You need to have a production setup deployed. | . ",
+    "content": ". | 您首先需要参照生产设置篇章部署好一个环境. | . ",
     "url": "/clusterfuzz-document-cn/contributing-code/staging-changes/#prerequisites",
     "relUrl": "/contributing-code/staging-changes/#prerequisites"
   },"124": {
     "doc": "Staging changes",
     "title": "App Engine changes",
-    "content": "You can test your UI or cron changes on a staging server instance using: . python butler.py deploy --staging --config-dir=$CONFIG_DIR . Once deployed, the changes will be visible on https://staging-dot-&lt;your project id&gt;.appspot.com. Note: The staging server uses the same database as the production server. So, be careful of any changes that may impact the data in the production database. ",
+    "content": "您可以使用以下命令在暂存服务器实例上测试UI或Cron的改动: . python butler.py deploy --staging --config-dir=$CONFIG_DIR . 部署后, 可以前往https://staging-dot-&lt;your project id&gt;.appspot.com查看您的改动. 注意: 暂存服务器使用与生产服务器相同的数据库. 因此，请注意任何可能影响生产数据库内数据的改动. ",
     "url": "/clusterfuzz-document-cn/contributing-code/staging-changes/#app-engine-changes",
     "relUrl": "/contributing-code/staging-changes/#app-engine-changes"
   },"125": {
     "doc": "Staging changes",
     "title": "Bot changes",
-    "content": "You can test code changes on a particular compute engine bot using: . python butler.py remote \\ --instance-name &lt;your instance name&gt; \\ --project &lt;your project id&gt; \\ --zone &lt;your project zone&gt; \\ stage --config-dir=$CONFIG_DIR . Note: . | These changes will not be overwritten by any production deployments for 2 days to allow adequate time for your changes to be tested. To discard those changes, just reboot the bot. | This functionality is currently only supported on a Google Compute Engine bot running one of the docker images provided in the docker directory. | . ",
+    "content": "您可以使用以下方法在特定的Compute Engine Bot上测试代码改动: . python butler.py remote \\ --instance-name &lt;your instance name&gt; \\ --project &lt;your project id&gt; \\ --zone &lt;your project zone&gt; \\ stage --config-dir=$CONFIG_DIR . 注意: . | 这些更改在2天之内都不会被任何生产部署所覆盖, 以便您有足够的时间来测试您的更改. 如果要放弃这些更改, 只需重新启动Bot即可. | 目前只有通过docker目录所提供的docker映像运行起来的Google Compute Engine Bot才支持此功能. | . ",
     "url": "/clusterfuzz-document-cn/contributing-code/staging-changes/#bot-changes",
     "relUrl": "/contributing-code/staging-changes/#bot-changes"
   },"126": {
@@ -847,19 +847,19 @@
   },"141": {
     "doc": "Using ClusterFuzz",
     "title": "Using ClusterFuzz",
-    "content": "These documents walk you through some key features of ClusterFuzz and common workflows. ",
+    "content": "这些文档将引导您逐步了解ClusterFuzz的一些关键功能以及常见的工作流程. ",
     "url": "/clusterfuzz-document-cn/using-clusterfuzz/",
     "relUrl": "/using-clusterfuzz/"
   },"142": {
     "doc": "Workflows",
     "title": "Workflows",
-    "content": "These set of documents detail some common workflows when dealing with crashes found by ClusterFuzz and analyzing fuzzer performance. ",
+    "content": "这些文档详细介绍了在处理ClusterFuzz发现的崩溃以及分析Fuzzer性能时的一些常见工作流程. ",
     "url": "/clusterfuzz-document-cn/using-clusterfuzz/workflows/",
     "relUrl": "/using-clusterfuzz/workflows/"
   },"143": {
     "doc": "Workflows",
     "title": "General tips",
-    "content": ". | When viewing a page in the ClusterFuzz web application, you can usually hover over an item or field (e.g. “Crash State” on the testcase details page) to see a more detailed explanation. | . ",
+    "content": ". | 在查看ClusterFuzz Web页面时, 通常可以将鼠标悬停在项目或字段上(例如, 在Testcase详情页上的”Crash State”)以查看更详细的说明. | . ",
     "url": "/clusterfuzz-document-cn/using-clusterfuzz/workflows/#general-tips",
     "relUrl": "/using-clusterfuzz/workflows/#general-tips"
   }
