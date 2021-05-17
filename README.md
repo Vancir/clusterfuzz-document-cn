@@ -48,9 +48,9 @@ bundle exec jekyll serve
 | ✅    | Contributing code - Staging changes                          | 已完成   |
 | ✅    | Reference                                                    | 已完成   |
 | ✅    | Reference - Glossary                                         | 已完成   |
-|      | Reference - Coverage guided vs blackbox fuzzing              | 未开始   |
-|      | Reference - Job definition                                   | 未开始   |
-|      | Reference - FAQ                                              | 未开始   |
+| ✅    | Reference - Coverage guided vs blackbox fuzzing              | 已完成   |
+| ⏸️    | Reference - Job definition                                   | 正在进行 |
+| ⏸️    | Reference - FAQ                                              | 正在进行 |
 
 ## 文档主题
 
