@@ -77,27 +77,27 @@ zip fuzzer-build.zip fuzzer afl-fuzz afl-showmap
 AFL构建是zip文件，其中包含您要fuzz的任何目标，它们的依赖关系以及AFL的依赖关系：`afl-fuzz`和`afl-showmap`（均由[script]构建）。
 
 ## Creating a job type
-LibFuzzer作业**必须在名称中包含字符串**“ libfuzzer” **，AFL ++作业**必须在名称中包含字符串**“ afl” **。 作业还必须包含他们正在使用的sanitizer的名称（例如“ asan”，“ msan”或“ ubsan”）。
-**“ libfuzzer_asan_my_project” **和**“ afl_asan_my_project” **是使用AddressSanitizer的libFuzzer和AFL作业的正确名称示例。
+LibFuzzer作业**必须**在名称中包含字符串“**libfuzzer**”，AFL ++作业**必须**在名称中包含字符串“**afl**”。 作业还必须包含他们正在使用的sanitizer的名称（例如“ asan”，“ msan”或“ ubsan”）。
+“**libfuzzer_asan_my_project**” 和“**afl_asan_my_project**” 是使用AddressSanitizer的libFuzzer和AFL作业的正确名称示例。
 
 要为libFuzzer或AFL创建作业：
 1. 导航到“工作”页面。
 2. 转到“添加新工作”表格。
 3. 填写“名称”和“平台”（LINUX）。
-4. 在“选择/修改fuzzer”字段中启用所需的fuzzer，例如** libFuzzer **，** honggfuzz **或** afl **。
-5. 如果要设置** AFL **作业，请使用模板**“ afl” **和**“ engine_asan” **。
-6. 如果要设置“ honggfuzz”作业，请使用模板“ honggfuzz” **和“ engine_asan” **。
-7. 如果要设置** libFuzzer **作业，请根据所使用的sanitizer使用模板**“ libfuzzer” **和**“ engine_ $ SANITIZER” **（例如**“ engine_asan” **）。
+4. 在“选择/修改fuzzer”字段中启用所需的fuzzer，例如**libFuzzer**，**honggfuzz**或**afl**。
+5. 如果要设置 **AFL** 作业，请使用模板“**afl**” 和“**engine_asan**”。
+6. 如果要设置“**honggfuzz**”作业，请使用模板“ **honggfuzz**” 和“**engine_asan**”。
+7. 如果要设置**libFuzzer**作业，请根据所使用的sanitizer使用模板“**libfuzzer**” 和“**engine_$SANITIZER**”（例如“**engine_asan**” ）。
 8. 选择您的构建（您的zip文件包含目标二进制文件）以作为“自定义构建”上传。 如果要在生产环境中运行ClusterFuzz，建议设置[构建管道]并按照[这些]说明提供连续的构建，而不要使用“自定义构建”。
 9. 使用“添加”按钮将作业添加到ClusterFuzz。
 
 [这些]: {{ site.baseurl }}/production-setup/setting-up-fuzzing-job/
 
 ### Enabling corpus pruning
-启用[语料库修剪]每天运行一次，以防止不受控制的语料库增长，这一点很重要。 必须通过在libFuzzer ASan作业的“环境字符串” **中设置`CORPUS_PRUNE = True`来完成此操作。
+启用[语料库修剪]每天运行一次，以防止不受控制的语料库增长，这一点很重要。 必须通过在libFuzzer ASan作业的“**环境字符串**”中设置`CORPUS_PRUNE = True`来完成此操作。
 
 ## Checking results
-您可以通过查看[bot日志]来观察ClusterFuzz对构建进行模糊测试。 它发现的任何错误都可以在* Testcases *页面上找到。 如果在生产环境中运行ClusterFuzz（即不在本地），则还可以查看[崩溃统计信息]和[fuzzer统计信息]（通常需要等待一天才能查看fuzzer统计信息）。
+您可以通过查看[bot日志]来观察ClusterFuzz对构建进行模糊测试。 它发现的任何错误都可以在*Testcases*页面上找到。 如果在生产环境中运行ClusterFuzz（即不在本地），则还可以查看[崩溃统计信息]和[fuzzer统计信息]（通常需要等待一天才能查看fuzzer统计信息）。
 
 ## Seed corpus
 您可以选择在构建中上传一个zip文件，其中包含用于ClusterFuzz的示例输入，以提供给您的Fuzzer。 我们称其为种子语料库。 对于给定的fuzz目标，如果满足以下条件，ClusterFuzz将使用文件作为种子语料库：
