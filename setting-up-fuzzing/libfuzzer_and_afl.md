@@ -18,19 +18,7 @@ permalink: /setting-up-fuzzing/libfuzzer-and-afl/
 ## Prerequisites
 
 ### Compiler
-LibFuzzer and AFL need to use instrumentation from the Clang compiler. In our
-documentation, we use features provided by Clang **6.0** or greater. However,
-for serious use of ClusterFuzz, we recommend using as close to trunk Clang as
-possible. To get a Clang build that is close to trunk you can download it from
-the [snapshots page] (Windows) or follow the instructions on the [apt page]
-(Ubuntu/Debian). Otherwise you can download a Clang release from the [releases
-page] or install one using your package manager. We will refer to these
-compilers in examples as `$CC` and `$CXX`. Set these in the environment so that
-you can copy and paste the example commands:
-
-<!-- TODO -->
-
-LibFuzzer和AFL均需要使用Clang编译器进行代码插装. 在本文档中, 我们采用的版本为Clang **6.0**及更高. 但对于认真使用ClusterFuzz的情况, 我们建议使用尽可能靠近主干Clang的通道. 要获得接近主干的Clang版本，您可以从[快照页面]（Windows）下载它，或按照[apt页] (Ubuntu / Debian)上的说明进行操作。 否则，您可以从[发布页面]下载Clang发行版，或使用包管理器安装一个Clang发行版。 我们将在示例中将这些编译器称为`$CC`和`$CXX`。 在环境中进行设置，以便您可以复制并粘贴示例命令：
+LibFuzzer和AFL均需要使用Clang编译器进行代码插装. 在本文档中, 我们采用的版本为Clang **6.0**及更高. 但为了更好的使用ClusterFuzz, 我们建议使用Clang最新稳定版本. 要获得Clang最新稳定版本，您可以从[快照页面]（Windows）下载它，或按照[apt页] (Ubuntu / Debian)上的说明进行操作。 否则，您可以从[发布页面]下载Clang发行版，或使用包管理器安装一个Clang发行版。 我们将在示例中将这些编译器称为`$CC`和`$CXX`。 在环境中进行设置，以便您可以复制并粘贴示例命令：
 
 ```bash
 export CC=/path/to/clang
@@ -68,22 +56,10 @@ libFuzzer构建包是包含您要Fuzz的目标及其依赖项的Zip归档文件.
 [sanitizer]: {{ site.baseurl }}/reference/glossary/#sanitizer
 
 ### AFL
-ClusterFuzz supports fuzzing libFuzzer harness functions
-(`LLVMFuzzerTestOneInput`) with AFL++. AFL++ must be used with [AddressSanitizer].
-To build a fuzz target for AFL, run our [script] which downloads and builds AFL
-and `FuzzingEngine.a`, a library you can link the target against to make it AFL
-compatible. Then compile and link your target using
-`-fsanitize-coverage=trace-pc-guard` and `-fsanitize=address`.
+ClusterFuzz支持使用AFL ++来fuzzing libFuzzer的harness功能（`LLVMFuzzerTestOneInput`）。 AFL ++必须与[AddressSanitizer]一起使用。
+要为AFL构建fuzz目标，请运行我们的[script]，该脚本下载并构建AFL和`FuzzingEngine.a`，您可以将目标链接到该库以使其与AFL兼容。 然后使用-fsanitize-coverage = trace-pc-guard和-fsanitize = address编译并链接目标。
 
-ClusterFuzz支持使用AFL ++模糊化libFuzzer线束功能（`LLVMFuzzerTestOneInput`）。 AFL ++必须与[AddressSanitizer]一起使用。
-要为AFL构建模糊目标，请运行我们的[script]，该脚本下载并构建AFL和`FuzzingEngine.a`，您可以将目标链接到该库以使其与AFL兼容。 然后使用-fsanitize-coverage = trace-pc-guard和-fsanitize = address编译并链接目标。
-
-Note: This will not use AFL++ to it's full potential as advanced fuzzing
-features like CMPLOG and COMPCOV will not be enabled.
-It is therefore recommended to use oss-fuzz to create (multiple) fuzzing
-packages instead, as each package is instrumented with random options.
-
-由于将不会启用CMPLOG和COMPCOV之类的高级模糊功能，因此不会充分利用AFL ++。
+注意:由于将不会启用CMPLOG和COMPCOV之类的高级模糊功能，因此不会充分利用AFL ++。
 因此，建议使用oss-fuzz代替创建（多个）模糊测试软件包，因为每个软件包都带有随机选项。
 
 
@@ -98,93 +74,56 @@ AFL_SKIP_CPUFREQ=1 ./afl-fuzz -i $INPUT_CORPUS -o output -m none ./fuzzer
 zip fuzzer-build.zip fuzzer afl-fuzz afl-showmap
 ```
 
-AFL builds are zip files that contain any targets you want to fuzz, their
-dependencies, and AFL's dependencies: `afl-fuzz` and `afl-showmap` (both built
-by the [script]).
-
-AFL构建是zip文件，其中包含您要模糊化的任何目标，它们的依赖关系以及AFL的依赖关系：`afl-fuzz`和`afl-showmap`（均由[script]构建）。
+AFL构建是zip文件，其中包含您要fuzz的任何目标，它们的依赖关系以及AFL的依赖关系：`afl-fuzz`和`afl-showmap`（均由[script]构建）。
 
 ## Creating a job type
-LibFuzzer jobs **must** contain the string **"libfuzzer"** in their name, AFL++
-jobs **must** contain the string **"afl"** in their name. Jobs must also contain
-the name of the sanitizer they are using (e.g. "asan", "msan",  or "ubsan").
-**"libfuzzer_asan_my_project"** and **"afl_asan_my_project"** are examples of
-correct names for libFuzzer and AFL jobs that use AddressSanitizer.
-
-LibFuzzer作业**必须在名称中包含字符串**“ libfuzzer” **，AFL ++作业**必须在名称中包含字符串**“ afl” **。 作业还必须包含他们正在使用的消毒剂的名称（例如“ asan”，“ msan”或“ ubsan”）。
+LibFuzzer作业**必须在名称中包含字符串**“ libfuzzer” **，AFL ++作业**必须在名称中包含字符串**“ afl” **。 作业还必须包含他们正在使用的sanitizer的名称（例如“ asan”，“ msan”或“ ubsan”）。
 **“ libfuzzer_asan_my_project” **和**“ afl_asan_my_project” **是使用AddressSanitizer的libFuzzer和AFL作业的正确名称示例。
 
-To create a job for libFuzzer or AFL: 要为libFuzzer或AFL创建作业：
+要为libFuzzer或AFL创建作业：
 1. Navigate to the *Jobs* page. 导航到“工作”页面。
 2. Go to the "ADD NEW JOB" form. 转到“添加新工作”表格。
 3. Fill out the "Name" and "Platform" (LINUX). 填写“名称”和“平台”（LINUX）。
 4. Enable the desired fuzzer in the "Select/modify fuzzers" field, e.g.
-   **libFuzzer**, **honggfuzz**, or **afl**. 在“选择/修改模糊器”字段中启用所需的模糊器，例如 ** libFuzzer **，** honggfuzz **或** afl **。
+   **libFuzzer**, **honggfuzz**, or **afl**. 在“选择/修改fuzzer”字段中启用所需的fuzzer，例如** libFuzzer **，** honggfuzz **或** afl **。
 5. If setting up an **AFL** job, use the templates **"afl"** and
    **"engine_asan"**. 如果要设置** AFL **作业，请使用模板**“ afl” **和**“ engine_asan” **。
 6. If setting up a **honggfuzz** job, use the templates **"honggfuzz"** and 
    **"engine_asan"**. 如果要设置“ honggfuzz”作业，请使用模板“ honggfuzz” **和“ engine_asan” **。
 7. If setting up a **libFuzzer** job, use the templates **"libfuzzer"** and
    **"engine_$SANITIZER"** depending on which sanitizer you are using (e.g.
-   **"engine_asan"**). 如果要设置** libFuzzer **作业，请根据所使用的消毒剂使用模板**“ libfuzzer” **和**“ engine_ $ SANITIZER” **（例如**“ engine_asan” **）。
+   **"engine_asan"**). 如果要设置** libFuzzer **作业，请根据所使用的sanitizer使用模板**“ libfuzzer” **和**“ engine_ $ SANITIZER” **（例如**“ engine_asan” **）。
 8. Select your build (your zip containing the fuzz target binary) to upload as a
    "Custom Build". If you are running ClusterFuzz in production, it is
    recommended to set up a [build pipeline] and follow [these] instructions on
-   providing continuous builds rather than using a "Custom Build". 选择您的构建（您的zip文件包含模糊目标二进制文件）以作为“自定义构建”上载。 如果要在生产环境中运行ClusterFuzz，建议设置[构建管道]并按照[这些]说明提供连续的构建，而不要使用“自定义构建”。
+   providing continuous builds rather than using a "Custom Build". 选择您的构建（您的zip文件包含目标二进制文件）以作为“自定义构建”上传。 如果要在生产环境中运行ClusterFuzz，建议设置[构建管道]并按照[这些]说明提供连续的构建，而不要使用“自定义构建”。
 9. Use the "ADD" button to add the job to ClusterFuzz. 使用“添加”按钮将作业添加到ClusterFuzz。
 
 [these]: {{ site.baseurl }}/production-setup/setting-up-fuzzing-job/
 
 ### Enabling corpus pruning
-It is important that you enable [corpus pruning] to run once a day to prevent
-uncontrolled corpus growth. This **must** be done by setting `CORPUS_PRUNE =
-True` in the **"Environment String"** for your libFuzzer ASan job.
-
 启用[语料库修剪]每天运行一次，以防止不受控制的语料库增长，这一点很重要。 必须通过在libFuzzer ASan作业的“环境字符串” **中设置`CORPUS_PRUNE = True`来完成此操作。
 
 ## Checking results
-You can observe ClusterFuzz fuzzing your build by looking at the [bot logs]. Any
-bugs it finds can be found on the *Testcases* page. If you are running
-ClusterFuzz in production (ie: not locally), you can also view [crash stats] and
-[fuzzer stats] (one generally needs to wait a day to view fuzzer stats).
-
 您可以通过查看[bot日志]来观察ClusterFuzz对构建进行模糊测试。 它发现的任何错误都可以在* Testcases *页面上找到。 如果在生产环境中运行ClusterFuzz（即不在本地），则还可以查看[崩溃统计信息]和[fuzzer统计信息]（通常需要等待一天才能查看fuzzer统计信息）。
 
 ## Seed corpus
-You can optionally upload a zip file in your build containing sample inputs for
-ClusterFuzz to give to your fuzzer. We call this a seed corpus. For a given fuzz
-target, ClusterFuzz will use a file as a seed corpus if:
+您可以选择在构建中上传一个zip文件，其中包含用于ClusterFuzz的示例输入，以提供给您的Fuzzer。 我们称其为种子语料库。 对于给定的fuzz目标，如果满足以下条件，ClusterFuzz将使用文件作为种子语料库：
 
-您可以选择在构建中上载一个zip文件，其中包含用于ClusterFuzz的示例输入，以提供给您的Fuzzer。 我们称其为种子语料库。 对于给定的模糊目标，如果满足以下条件，ClusterFuzz将使用文件作为种子语料库：
-
-* It is in the same directory in the build as the fuzz target. 它与模糊目标位于构建的同一目录中。
-* It has the same name as the fuzz target (not including `.exe` extension)
-  followed by `_seed_corpus.zip` (i.e. `<fuzz_target>_seed_corpus.zip` for
-  `<fuzz_target>`). 它与模糊目标具有相同的名称（不包括.exe扩展名），后跟_seed_corpus.zip（即<fuzz_target>的<fuzz_target> _seed_corpus.zip）。
-
-We recommend zipping directories of interesting inputs at build time to create a
-seed corpus.
+* 它与fuzz目标位于构建的同一目录中。
+* 它与fuzz目标具有相同的名称（不包括.exe扩展名），后跟_seed_corpus.zip（即<fuzz_target>的<fuzz_target> _seed_corpus.zip）。
 
 我们建议在构建时压缩有趣输入的目录，以创建种子语料库。
 
 ## Dictionaries
-ClusterFuzz supports using [libFuzzer/AFL Dictionaries]. A dictionary is a list
-of tokens that AFL or libFuzzer can insert during fuzzing. For a given fuzz
-target, ClusterFuzz will use a file as a dictionary if:
+ClusterFuzz支持使用[libFuzzer / AFL Dictionaries]。 字典是AFL或libFuzzer在模糊过程中可以插入标记的列表。 对于给定的fuzz目标，如果满足以下条件，ClusterFuzz将使用文件作为字典：
 
-ClusterFuzz支持使用[libFuzzer / AFL Dictionaries]。 字典是AFL或libFuzzer在模糊过程中可以插入的标记的列表。 对于给定的模糊目标，如果满足以下条件，ClusterFuzz将使用文件作为字典：
-
-* It is in the same directory in the build as the fuzz target. 它与模糊目标位于构建的同一目录中。
-* It has the same name as the fuzz target (not including `.exe` extension)
-  followed by `.dict` (i.e. `<fuzz_target>.dict` for `<fuzz_target>`). 它与模糊目标具有相同的名称（不包括.exe扩展名），后跟.dict（即<fuzz_target>的<fuzz_target> .dict）。
+* 它与模糊目标位于构建的同一目录中。
+* 它与模糊目标具有相同的名称（不包括.exe扩展名），后跟.dict（即<fuzz_target>的<fuzz_target> .dict）。
 
 [libFuzzer/AFL Dictionaries]: https://llvm.org/docs/LibFuzzer.html#dictionaries
 
 ## AFL limitations
-Though ClusterFuzz supports fuzzing with AFL, it doesn't support using it for
-[corpus pruning] and [crash minimization]. Therefore, if you use AFL, you should
-also use libFuzzer which supports these tasks.
-
 尽管ClusterFuzz支持AFL进行模糊测试，但不支持将其用于[语料库修剪]和[崩溃最小化]。 因此，如果使用AFL，则还应该使用支持这些任务的libFuzzer。
 
 [AFL++]: https://github.com/AFLplusplus/AFLplusplus
@@ -197,7 +136,8 @@ also use libFuzzer which supports these tasks.
 [crash minimization]: {{ site.baseurl }}/reference/glossary/#minimization
 [crash stats]: {{ site.baseurl }}/using-clusterfuzz/ui-overview/#crash-statistics
 [fuzz target]:https://llvm.org/docs/LibFuzzer.html#id22
-[fuzzer stats]: {{ site.baseurl }}/using-clusterfuzz/ui-overview/#fuzzer-statistics
+[fuzzer stats]: {{ site.baseurl }}/using-clusterfuzz/ui-over
+view/#fuzzer-statistics
 [latest AFL source]:http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz
 [libFuzzer]: https://llvm.org/docs/LibFuzzer.html
 [script]: {{ site.baseurl }}/setting-up-fuzzing/build_afl.bash
