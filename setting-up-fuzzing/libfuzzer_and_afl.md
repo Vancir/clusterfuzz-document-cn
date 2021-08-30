@@ -81,25 +81,17 @@ LibFuzzer作业**必须在名称中包含字符串**“ libfuzzer” **，AFL ++
 **“ libfuzzer_asan_my_project” **和**“ afl_asan_my_project” **是使用AddressSanitizer的libFuzzer和AFL作业的正确名称示例。
 
 要为libFuzzer或AFL创建作业：
-1. Navigate to the *Jobs* page. 导航到“工作”页面。
-2. Go to the "ADD NEW JOB" form. 转到“添加新工作”表格。
-3. Fill out the "Name" and "Platform" (LINUX). 填写“名称”和“平台”（LINUX）。
-4. Enable the desired fuzzer in the "Select/modify fuzzers" field, e.g.
-   **libFuzzer**, **honggfuzz**, or **afl**. 在“选择/修改fuzzer”字段中启用所需的fuzzer，例如** libFuzzer **，** honggfuzz **或** afl **。
-5. If setting up an **AFL** job, use the templates **"afl"** and
-   **"engine_asan"**. 如果要设置** AFL **作业，请使用模板**“ afl” **和**“ engine_asan” **。
-6. If setting up a **honggfuzz** job, use the templates **"honggfuzz"** and 
-   **"engine_asan"**. 如果要设置“ honggfuzz”作业，请使用模板“ honggfuzz” **和“ engine_asan” **。
-7. If setting up a **libFuzzer** job, use the templates **"libfuzzer"** and
-   **"engine_$SANITIZER"** depending on which sanitizer you are using (e.g.
-   **"engine_asan"**). 如果要设置** libFuzzer **作业，请根据所使用的sanitizer使用模板**“ libfuzzer” **和**“ engine_ $ SANITIZER” **（例如**“ engine_asan” **）。
-8. Select your build (your zip containing the fuzz target binary) to upload as a
-   "Custom Build". If you are running ClusterFuzz in production, it is
-   recommended to set up a [build pipeline] and follow [these] instructions on
-   providing continuous builds rather than using a "Custom Build". 选择您的构建（您的zip文件包含目标二进制文件）以作为“自定义构建”上传。 如果要在生产环境中运行ClusterFuzz，建议设置[构建管道]并按照[这些]说明提供连续的构建，而不要使用“自定义构建”。
-9. Use the "ADD" button to add the job to ClusterFuzz. 使用“添加”按钮将作业添加到ClusterFuzz。
+1. 导航到“工作”页面。
+2. 转到“添加新工作”表格。
+3. 填写“名称”和“平台”（LINUX）。
+4. 在“选择/修改fuzzer”字段中启用所需的fuzzer，例如** libFuzzer **，** honggfuzz **或** afl **。
+5. 如果要设置** AFL **作业，请使用模板**“ afl” **和**“ engine_asan” **。
+6. 如果要设置“ honggfuzz”作业，请使用模板“ honggfuzz” **和“ engine_asan” **。
+7. 如果要设置** libFuzzer **作业，请根据所使用的sanitizer使用模板**“ libfuzzer” **和**“ engine_ $ SANITIZER” **（例如**“ engine_asan” **）。
+8. 选择您的构建（您的zip文件包含目标二进制文件）以作为“自定义构建”上传。 如果要在生产环境中运行ClusterFuzz，建议设置[构建管道]并按照[这些]说明提供连续的构建，而不要使用“自定义构建”。
+9. 使用“添加”按钮将作业添加到ClusterFuzz。
 
-[these]: {{ site.baseurl }}/production-setup/setting-up-fuzzing-job/
+[这些]: {{ site.baseurl }}/production-setup/setting-up-fuzzing-job/
 
 ### Enabling corpus pruning
 启用[语料库修剪]每天运行一次，以防止不受控制的语料库增长，这一点很重要。 必须通过在libFuzzer ASan作业的“环境字符串” **中设置`CORPUS_PRUNE = True`来完成此操作。
@@ -116,7 +108,7 @@ LibFuzzer作业**必须在名称中包含字符串**“ libfuzzer” **，AFL ++
 我们建议在构建时压缩有趣输入的目录，以创建种子语料库。
 
 ## Dictionaries
-ClusterFuzz支持使用[libFuzzer / AFL Dictionaries]。 字典是AFL或libFuzzer在模糊过程中可以插入标记的列表。 对于给定的fuzz目标，如果满足以下条件，ClusterFuzz将使用文件作为字典：
+ClusterFuzz支持使用[libFuzzer/AFL Dictionaries]。 字典是AFL或libFuzzer在模糊过程中可以插入标记的列表。 对于给定的fuzz目标，如果满足以下条件，ClusterFuzz将使用文件作为字典：
 
 * 它与模糊目标位于构建的同一目录中。
 * 它与模糊目标具有相同的名称（不包括.exe扩展名），后跟.dict（即<fuzz_target>的<fuzz_target> .dict）。
@@ -129,15 +121,14 @@ ClusterFuzz支持使用[libFuzzer / AFL Dictionaries]。 字典是AFL或libFuzze
 [AFL++]: https://github.com/AFLplusplus/AFLplusplus
 [AddressSanitizer]: https://clang.llvm.org/docs/AddressSanitizer.html
 [afl_driver.cpp]: https://raw.githubusercontent.com/llvm-mirror/compiler-rt/master/lib/fuzzer/afl/afl_driver.cpp
-[bot logs]: {{ site.baseurl }}/getting-started/local-instance/#viewing-logs
-[build pipeline]: {{ site.baseurl }}/production-setup/build-pipeline/
-[corpus pruning]: {{ site.baseurl }}/reference/glossary/#corpus-pruning
-[coverage guided fuzzing]: {{ site.baseurl }}/reference/coverage-guided-vs-blackbox/#coverage-guided-fuzzing
-[crash minimization]: {{ site.baseurl }}/reference/glossary/#minimization
-[crash stats]: {{ site.baseurl }}/using-clusterfuzz/ui-overview/#crash-statistics
+[bot日志]: {{ site.baseurl }}/getting-started/local-instance/#viewing-logs
+[构建管道]: {{ site.baseurl }}/production-setup/build-pipeline/
+[语料库修剪]: {{ site.baseurl }}/reference/glossary/#corpus-pruning
+[覆盖率导向的模糊测试]: {{ site.baseurl }}/reference/coverage-guided-vs-blackbox/#coverage-guided-fuzzing
+[崩溃最小化]: {{ site.baseurl }}/reference/glossary/#minimization
+[崩溃统计信息]: {{ site.baseurl }}/using-clusterfuzz/ui-overview/#crash-statistics
 [fuzz target]:https://llvm.org/docs/LibFuzzer.html#id22
-[fuzzer stats]: {{ site.baseurl }}/using-clusterfuzz/ui-over
-view/#fuzzer-statistics
+[fuzzer统计信息]: {{ site.baseurl }}/using-clusterfuzz/ui-overview/#fuzzer-statistics
 [latest AFL source]:http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz
 [libFuzzer]: https://llvm.org/docs/LibFuzzer.html
 [script]: {{ site.baseurl }}/setting-up-fuzzing/build_afl.bash
