@@ -24,7 +24,7 @@ bundle exec jekyll serve
 | ✅    | Getting started - Prerequisites                              | 已完成   |
 | ✅    | Getting started - Running a local instance                   | 已完成   |
 | ✅    | Setting up fuzzing                                           | 已完成   |
-| ⏸️    | Setting up fuzzing - libFuzzer and AFL                       | 正在进行 |
+| ✅    | Setting up fuzzing - libFuzzer and AFL                       | 已完成 |
 | ✅    | Setting up fuzzing - Blackbox fuzzing                        | 已完成   |
 | ✅    | Setting up fuzzing - Heartbleed example                      | 已完成   |
 | ✅    | Production setup                                             | 已完成   |
