@@ -47,7 +47,7 @@ ClusterFuzz提供了*Upload Testcase*页面，用来在最新的生产用构建�
 
 一旦上传了一个新的测试用例，就会跳转到*测试用例细节*页面。这个页面每隔*5分钟*自动刷新一次，以提供最新的结果。起初，ClusterFuzz会尝试查找该测试用例是否生成crashes。
 
-如果测试用例没有生成crashes，ClusterFuzz会将测试用例的状态设置为***不可复现**。如果测试用例生成了crashes，那么ClusterFuzz会首先更新在*Overview*部分的crash参数以及**崩溃栈回溯**。然后，ClusterFuzz会尝试其他任务，如测试用例的[最小化]、查找[回归范围]等。
+如果测试用例没有生成crashes，ClusterFuzz会将测试用例的状态设置为**不可复现**。如果测试用例生成了crashes，那么ClusterFuzz会首先更新在*Overview*部分的crash参数以及**崩溃栈回溯**。然后，ClusterFuzz会尝试其他任务，如测试用例的[最小化]、查找[回归范围]等。
 
 请耐心等待结果。结果的速度将取决于决于bots的效率。
 
