@@ -9,12 +9,9 @@ grand_parent: Using ClusterFuzz
 
 # Fixing a bug
 
-Finding bugs is primarily useful if it can help get bugs fixed. To make fixing
-bugs easier, ClusterFuzz provides the necessary information to reproduce issues,
-and confirms that fixes are correct.
+如果能帮助修复错误，发现错误是非常有用的。为了使修复错误更加容易，ClusterFuzz提供了必要的信息来重现问题，并确认修复是正确的。
 
-This document focuses on the testcase details page, since it contains the
-majority of the relevant information for fixing a bug.
+本文档重点关注测试用例的详细页面，因为它包含了修复错误的大部分相关信息。
 
 - TOC
 {:toc}
@@ -23,46 +20,27 @@ majority of the relevant information for fixing a bug.
 
 ## Reproducing an issue
 
-The *Overview* section of the report contains links to download the testcase and
-build that triggered the issue.
+报告的*概述*部分包含了触发该问题下载的测试用例和构建的链接。
 
-At the top of the crash stacktrace (which may need to be expanded), ClusterFuzz
-shows the command line and any important environment variables that were set
-when the crash initially occurred. The environment variables may be be required
-to reproduce the crash.
+在崩溃栈回溯的顶部（可能需要扩展），ClusterFuzz显示了命令行和最初发生crash时设置的重要环境变量。这些环境变量可能是复现crash的必要条件。
 
 ## Fixed testing
 
-Once a day, ClusterFuzz re-runs testcases against the latest build until it
-detects them as fixed. When an issue is detected as fixed, the Fixed status of
-the bug will be updated to "Yes" and the *Fixed Revision Range* section will
-link to a range of commits containing the fix.
+每重新运行一次，ClusterFuzz都会针对最新的版本重新运行测试用例，直到它检测到这些用例被修复。当一个问题被检测到为修复状态，该问题的修复状态将被更新为 "是"，并且*修复范围*部分将链接到包含该修复的提交范围。
 
-If the testcase has been associated with a bug, ClusterFuzz will also leave a
-comment and change the issue status to indicate that it has verified the fix is
-correct.
+如果测试用例与某个bug相关联，ClusterFuzz也会留下记录并更改问题状态，以表明它已经验证了修复的正确性
+。
 
 ## Unreliable crashes
 
-ClusterFuzz does not consider testcases that do not [reliably reproduce] as
-important. However, if a [crash state] is seen very frequently despite not
-having a single reliable testcase for it, ClusterFuzz will file a bug for it.
+ClusterFuzz认为那些没有[稳定复现]的测试用例不重要。但是，如果一个[crash状态]经常出现，尽管没有一个稳定的测试用例，ClusterFuzz将为其提交一个bug。
 
-When ClusterFuzz finds a reliably reproducible testcase for the same [crash
-state], it creates a new report and deletes the older report with the
-unreliable testcase. It is recommended in such cases to wait a few days to see if a
-reproducible testcase can be found.
+当ClusterFuzz发现同一[crash状态]下的可以稳定复现的测试用例时，它会创建一个新的报告，并删除含有不稳定测试用例的旧报告。在这种情况下，建议等待几天，看看是否能找到可复现的测试案例。
 
-If not, you can try running the testcase multiple times to see if you can get a
-consistent crash locally. If that fails, we recommend pushing a speculative fix
-based on the crash stacktrace and then letting ClusterFuzz verify if the crash
-stops happening over the next couple of days.
+如果没有找到，可以尝试多次运行测试用例，看是否能在本地得到一个一致的crash。如果失败了，我们建议根据crash的栈回溯推送一个推测性修复，然后让ClusterFuzz来验证crash是否在接下来的几天内停止发生。
 
-If a tracking bug is filed, ClusterFuzz will automatically look at [crash statistics]
-every day and close the bug as Verified if that crash stops happening frequently
-(i.e. no crash seen in a period of *2 weeks*). If a bug is not filed,
-unreproducible testcases get automatically closed if they are not seen for a *week*.
+如果提交了一个跟踪bug，ClusterFuzz将每天自动查看[crash统计]，如果该crash不再频繁发生（即在*2周内没有看到crash*），则将该bug状态设置为Verified并关闭该Bug。如果没有提交bug，那么如果在一周内没有看到不可复现的测试用例，就会自动关闭。
 
-[crash statistics]: {{ site.baseurl }}/using-clusterfuzz/ui-overview/#crash-statistics
-[crash state]: {{ site.baseurl }}/reference/glossary/#crash-state
-[reliably reproduce]: {{ site.baseurl }}/reference/glossary/#reliability-of-reproduction
+[crash统计]: {{ site.baseurl }}/using-clusterfuzz/ui-overview/#crash-statistics
+[crash状态]: {{ site.baseurl }}/reference/glossary/#crash-state
+[稳定复现]: {{ site.baseurl }}/reference/glossary/#reliability-of-reproduction
