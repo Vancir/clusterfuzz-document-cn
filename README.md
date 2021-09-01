@@ -38,7 +38,7 @@ bundle exec jekyll serve
 | ✅    | Using ClusterFuzz - Workflows - Triaging new crashes         | 已完成   |
 | ✅     | Using ClusterFuzz - Workflows - Fixing a bug                 | 已完成   |
 | ✅     | Using ClusterFuzz - Workflows - Analyzing fuzzer performance | 已完成   |
-|      | Using ClusterFuzz - Workflows - Uploading a testcase         | 未开始   |
+| ✅     | Using ClusterFuzz - Workflows - Uploading a testcase         | 未开始   |
 | ✅    | Using ClusterFuzz -  Advanced features                       | 已完成   |
 |      | Using ClusterFuzz -  Advanced features - Access control      | 未开始   |
 |      | Using ClusterFuzz -  Advanced features - Code coverage       | 未开始   |
