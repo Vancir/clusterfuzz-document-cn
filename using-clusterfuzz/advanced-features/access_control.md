@@ -9,8 +9,7 @@ nav_order: 1
 
 # Access control
 
-This page explains how you can restrict access to various parts of the ClusterFuzz web interface.
-This is controlled by defining the user(s) as part of one of the following groups.
+本页面解释了如何限制对ClusterFuzz网络界面各个部分的访问。这可以通过将用户定义分组来控制。
 
 - TOC
 {:toc}
@@ -18,41 +17,40 @@ This is controlled by defining the user(s) as part of one of the following group
 
 ## Regular users
 
-Regular users are usually the developers in your project, who triage and fix bugs. They
-can access most pages of the ClusterFuzz web interface, but with restricted permissions.
-This includes:
-* Testcases page (excluding security vulnerabilities)
-* Testcase report page (excluding security vulnerabilities)
-* Crash statistics page (excluding security vulnerabilities)
-* Crashes by range page (excluding security vulnerabilities)
-* Fuzzer statistics page
-* Upload testcase page
-* Fuzzers page (view only)
-* Corpora page (view only)
-* Bots page
+普通用户通常是项目中的开发者，他们负责将分类和修复bugs。并且可以访问ClusterFuzz的大部分页面，但权限受到限制。包括：
 
-They do not have access to the following pages:
-* Job page
-* Configuration page
+* 测试用例界面（不包括安全漏洞）
+* 测试用例报告界面（不包括安全漏洞）
+* crash统计界面（不包括安全漏洞）
+* crash范围界面（不包括安全漏洞）
+* fuzzer统计界面
+* 上传测试用例界面
+*  fuzzers界面（仅供参考）
+* 语料库界面（仅供参考）
+* bots界面
+
+普通用户没有权限访问以下界面：
+* job界面
+* 配置界面
 
 ## Privileged users
 
-Privileged users have unrestricted access to most parts of ClusterFuzz. These
-users can access all pages that a regular user can.
-However, privileged users can also:
-* Access security bugs (Security: "YES" in report).
-* Upload new fuzzers on Fuzzers page.
-* Upload new corpora on Corpora page.
-* Create new jobs on Jobs page.
+特权用户可以不受限制地访问 ClusterFuzz 的大部分界面，并且可以访问所有普通用户可以访问的页面。
+特权用户也可以：
 
-Privileged users are defined by the [Administrators](#administrators) on the Configuration page.
+* 访问安全漏洞（安全性：在报告中为"YES"）
+* 在fuzzers界面上传新的fuzzers
+* 在语料库界面上传新的语料
+* 在jobs界面创建新的jobs
+
+Privileged users are defined by the [Administrators](#administrators) on the Configuration page.特权用户在配置界面为 [Administrators](#administrators) 权限
 
 ## Administrators
 
-An [administrator](https://cloud.google.com/appengine/docs/standard/python/users/adminusers)
-has access to all parts of the ClusterFuzz web interface.
-This includes everything a privileged user has access to, and also includes:
-* Access to the Configuration page.
-  * Setting user permissions using:
-    * "Privileged Users" (e.g. `user@example.com`).
-    * "User permissions" section.
+ [administrator](https://cloud.google.com/appengine/docs/standard/python/users/adminusers)可以访问ClusterFuzz所有的web界面
+特权用户的访问权限还包括：
+
+* 访问配置界面
+  * 设置普通用户使用权限：
+    * “特权用户”（比如`user@example.com`）
+    * “普通用户”
