@@ -8,8 +8,7 @@ nav_order: 2
 ---
 
 # Code coverage
-This document describes the requirements and recommendations for enabling code
-coverage reports for a project using ClusterFuzz.
+本文档描述了使用ClusterFuzz的项目启用代码覆盖率报告的要求和建议。
 
 - TOC
 {:toc}
@@ -17,59 +16,42 @@ coverage reports for a project using ClusterFuzz.
 ---
 
 ## ClusterFuzz and code coverage
-ClusterFuzz is capable of storing, presenting, and leveraging code coverage
-information. However, ClusterFuzz does not generate code coverage reports, as
-that process depends on the build system used by a project, and build systems
-can be very different across projects.
+ClusterFuzz能够存储、展示和利用代码覆盖率信息。然而，ClusterFuzz并不能生成代码覆盖率报告，因为该过程取决于项目所使用的构建系统版本，而不同项目的构建系统版本可能有很大不同。
 
 ## Setting up a code coverage builder
-It is possible to set up an external builder or a Continuous Integration job
-that would produce code coverage data for ClusterFuzz. For C and C++ projects it
-is recommended to use [Clang Source-based Code Coverage](https://clang.llvm.org/docs/SourceBasedCodeCoverage.html).
+可以设置一个外部构建工具或持续集成job，为ClusterFuzz生成代码覆盖数据。对于C和C++项目，建议使用 [Clang Source-based Code Coverage](https://clang.llvm.org/docs/SourceBasedCodeCoverage.html).
 
 ## Code coverage report and stats
-A typical workflow for the builder is the following:
-1. Check out the latest version of the source code for the project.
-2. Build all the fuzzers in the project with code coverage instrumentation.
-3. Download the latest corpus backup from ClusterFuzz.
-4. For every fuzzer in the project:
-  - Unpack the corpus backup.
-  - Run the fuzzer against the unpacked corpus.
-  - Process the coverage dumps (`.profraw` files) using `llvm-profdata merge`.
-  - Use the resulting `.profdata` file to generate `$fuzzer_name.json` file via
-    `llvm-cov export -summary-only`.
-5. Merge all `.profdata` files produced by individual fuzzers into a single
-  `.profdata` file using  `llvm-profdata merge`.
-6. Use the final `.profdata` file to generate `summary.json` file for the whole
-  project. The resulting file will include aggregate data from the all fuzzers.
-7. Use the final `.profdata` file to generate an HTML report using
-  `llvm-cov show -format=html`. The report will include aggregate data from the
-  all fuzzers.
+构建工具典型的工作流程如下:
+1. 检查项目源码最新版本
+2. 构建项目中所有支持代码覆盖率插桩的Fuzzer
+3. 从ClusterFuzz下载最新的语料库备份
+4. 为项目中的每个fuzzer：
+  - 解压缩语料库备份
+  - fuzzer运行解压缩后的语料库
+  - 使用`llvm-profdata merge`处理覆盖率转储（`.profraw`文件）
+  - 使用生成的`.profdata`文件，通过`llvm-cov export -summary-only`方式生成 `$fuzzer_name.json`文件 。
 
-As a result, the builder should produce the following artifacts:
-1. JSON files with coverage stats for every fuzzer in the project.
-2. JSON file with coverage stats for the whole project.
-3. HTML report for the whole project.
+5. 使用`llvm-profdata merge`将各个fuzzers产生的所有`.profdata` 文件合并成一个`.profdata` 文件。
+6. 使用`.profdata`文件为整个项目生成`summary.json`文件。生成的文件将包括所有fuzzers的汇总数据。
+7. 使用`.profdata`文件，用`llvm-cov show -format=html`生成HTML报告。该报告将包括所有fuzzers的汇总数据。
 
-[Here](https://github.com/google/oss-fuzz/blob/master/infra/gcb/build_and_run_coverage.py)
-is an example of OSS-Fuzz code coverage job definition for
-[Google Cloud Build](https://cloud.google.com/cloud-build/). It also uses
-[coverage_utils.py](https://cs.chromium.org/chromium/src/tools/code_coverage/coverage_utils.py)
-script from Chromium and [this bash script](https://github.com/google/oss-fuzz/blob/master/infra/base-images/base-runner/coverage).
+因此，构建工具应该生成以下内容：
+1. 项目中每个fuzzer的统计覆盖率的JSON文件。
+2. 整个项目统计覆盖率的JSON文件。
+3. 整个项目的HTML报告。
+
+[这](https://github.com/google/oss-fuzz/blob/master/infra/gcb/build_and_run_coverage.py)是[Google Cloud Build](https://cloud.google.com/cloud-build/)用于定义OSS-Fuzz代码覆盖率的一个例子，利用Chromium中的[coverage_utils.py](https://cs.chromium.org/chromium/src/tools/code_coverage/coverage_utils.py)脚本和[this bash script](https://github.com/google/oss-fuzz/blob/master/infra/base-images/base-runner/coverage)脚本。
 
 ## Coverage information file
-The builder needs to upload the artifacts and a JSON file containing coverage
-information to a [GCS bucket](https://cloud.google.com/storage/docs/creating-buckets)
-specified in the project config (`coverage.reports.bucket`). The file name
-should be equal to the project name, e.g. `zlib.json`. The JSON file(s) must be
-uploaded to the following location:
+构建工具需要将Code coverage report and stats中提到的三个文件，以及包含覆盖率信息的JSON文件上传至项目配置中指定的[GCS bucket](https://cloud.google.com/storage/docs/creating-buckets)。文件名应等于项目名称，例如：`zlib.json`。该JSON文件必须上传至以下位置：
 
 ```bash
 gs://<bucket name>/latest_report_info/<project name>.json
 # Example from OSS-Fuzz:
 gs://oss-fuzz-coverage/latest_report_info/zlib.json
 ```
-The format of the file is the following:
+以下为文件格式：
 
 ```json
 {
@@ -80,16 +62,12 @@ The format of the file is the following:
 }
 ```
 
-* `report_date` is the date when the report was generated.
-* `fuzzer_stats_dir` is a GCS directory containing JSON files for every fuzzer
-  (`$fuzzer_name.json`).
-* `report_summary_path` should point to the `summary.json` file that includes
-  aggregate data from the all fuzzers in the project.
-* `html_report_url` should point to the `index.html` of the HTML report.
+* `report_date` 为报告生成的数据
+* `fuzzer_stats_dir`是一个GCS目录，包含每个fuzzer的JSON文件 (`$fuzzer_name.json`)。
+* `report_summary_path`应该指向`summary.json`文件，包括项目中所有fuzzers的综合数据。
+* `html_report_url`应该指向HTML报告的`index.html`。
 
-
-An example of a real `zlib.json` file uploaded by the code coverage job on
-OSS-Fuzz.
+ `zlib.json` 文件的例子，由代码覆盖job上传至 OSS-Fuzz。
 
 ```json
 {

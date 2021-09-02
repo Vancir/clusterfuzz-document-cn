@@ -41,7 +41,7 @@ bundle exec jekyll serve
 | ✅     | Using ClusterFuzz - Workflows - Uploading a testcase         | 已完成   |
 | ✅    | Using ClusterFuzz -  Advanced features                       | 已完成   |
 | ✅     | Using ClusterFuzz -  Advanced features - Access control      | 已完成   |
-|      | Using ClusterFuzz -  Advanced features - Code coverage       | 未开始   |
+| ✅     | Using ClusterFuzz -  Advanced features - Code coverage       | 已完成   |
 | ✅    | Contributing code                                            | 已完成   |
 | ✅    | Contributing code - Source code                              | 已完成   |
 | ✅    | Contributing code - Running unit tests                       | 已完成   |
